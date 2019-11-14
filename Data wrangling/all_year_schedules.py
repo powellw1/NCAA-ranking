@@ -16,7 +16,7 @@ for x in years:
     pre = urlSoup.find_all("pre")[0]
     stringpre = pre.string
     test = open(
-        "Data wrangling/data/all_years_schedule.txt", "a+")
+        f"Data wrangling/data/{x}_schedule.txt", "a+")
     test.write(stringpre)
     test.close()
 
