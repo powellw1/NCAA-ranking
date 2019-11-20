@@ -18,10 +18,10 @@ df = df.drop(df.tail(1).index,)
 
 df["Date"] = pd.to_datetime(df["Date"])
 week1 = df.loc[0, "Date"]
-week1 -= timedelta(7)
+# week1 -= timedelta(7)
 
 weekdf = pd.DataFrame()
-
+numweeks = range(0, 24)
 
 for x in numweeks:
     week1_new = (x * 7)
@@ -29,28 +29,40 @@ for x in numweeks:
     daysbetween = 7-1
     weekend = weekstart + timedelta(daysbetween)
     weekdf = weekdf.append(
-        {"End": weekend, "Start": weekstart,  "week": f"week {x}"}, ignore_index=True)
+        {"End": weekend, "Start": weekstart,  "week": f"{x +1}"}, ignore_index=True)
 
-    print(f"week{x}, is from {weekstart} to {weekend}")
+    print(f"week {x +1}, is from {weekstart} to {weekend}")
 
-
-22  # %%
-
-
-df["Season"] = "18-19"
-df[df["Date"] ==]
-# %%
-df = pd.DatetimeIndex(df["Date"]).year
-df = pd.to_datetime(df["Date"])
-
-week1 = df.loc[0, "Date"]
-week2 = "8/25/18"
-week2 = datetime.strptime(week2, "%m/%d/%yy")
+df["Week"] = 0
 
 # %%
 
+for x in df.index:
+    for t in df["Date"]:
+        for y in numweeks:
+            if weekdf.loc[y, "Start"] >= t <= weekdf.loc[y, "End"]:
+                week = weekdf.loc[y, "week"]
+                df.loc[x, "Week"] = week
+            else:
+                continue
+
 # %%
 
+dflen = len(df)
+dflen += 1
+dflength = range(0, dflen)
+
+x = df.loc[0, "Date"]
+
+if weekdf.loc[0, "Start"] >= x <= weekdf.loc[0, "End"]:
+    df.loc[0, "Week"] = 2
+else:
+
+df.loc[df['month'] == 'Feb', 'A']
+
+
+# TODO find home and away teams with for loop for each row dflength
+# %%
 # %%
 
 # %%
